@@ -2,9 +2,12 @@ package com.example.finalfinal;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -14,9 +17,9 @@ import javafx.scene.layout.VBox;
 import com.example.finalfinal.RightPanel;
 public class Item {
     private String type;
-    private final ImageView img;
-    private final Label name;
-    private final Label price;
+    private  ImageView img;
+    private  Label name;
+    private  Label price;
     private VBox keyfeature;
     private VBox fullspec;
     public Button compare, buy;
@@ -26,17 +29,22 @@ public class Item {
     public boolean compareTo;
     public boolean buyTo;
     public VBox boxbox;
+    public HBox buyContent;
     /**
      * Copy Node
      */
+    public String n;
     private ImageView copyImg;
     private Label copyName;
+    public static boolean added;
+
 
     public Item(String img, String name, double price) {
         this.img = new ImageView(new Image(String.format("file:src/main/resources/img/%s", img)));
-
+        n =name;
         this.name = new Label(name);
         this.price = new Label(String.format("$%.2f", price));
+        added = false;
         type = "graphic card";
         grid = new GridPane();
 
@@ -52,12 +60,23 @@ public class Item {
         this.name.getStyleClass().add("product-name");
         this.name.setWrapText(true);
         compareTo = false;
-        buyTo =false;
+        buyTo = false;
         compare = new Button("Compare");
         buy = new Button("Buy");
 
+
+
         compare.setOnAction(event -> {
-            RightPanel.right.getChildren().add(getCompare());
+            if (!added) {
+                RightPanel.right.getChildren().add(getCompare());
+                CompareView.allView.getChildren().add(getFullspec());
+            } else {
+                System.out.println("Already Added");
+            }
+        });
+
+        buy.setOnAction(event -> {
+            Main.shop.getItems().add(new CustomMenuItem(buyContent));
         });
     }
     public String getType() {
@@ -79,15 +98,7 @@ public class Item {
     public VBox getKeyfeature() {
         return keyfeature;
     }
-//    public void setFullspec(String Codename,String Architecture,String Pipelines,String TMUs,String ROPs,String RaytracingCores,String TensorAICores,String CoreSpeed,
-//                            String TheoreticalPerformance,String Cache,String MemorySpeed,String MemoryBusWidth,String MemoryType,String MaxAmountofMemory,String SharedMemory,
-//                            String MemoryBandwidth,String API,String PowerConsumption,String TransistorCount,String DieSize,String technology,String Displays) {
-//        fullspec = new VBox(5);
-//        fullspec.getChildren().addAll(new Label(Codename), new Label(Architecture), new Label(Pipelines), new Label(TMUs),
-//                new Label(ROPs), new Label(RaytracingCores), new Label(TensorAICores), new Label(CoreSpeed), new Label(TheoreticalPerformance), new Label(Cache),
-//                new Label(MemorySpeed), new Label(MemoryBusWidth), new Label(MemoryType), new Label(MaxAmountofMemory), new Label(SharedMemory), new Label(MemoryBandwidth),
-//                new Label(API), new Label(PowerConsumption), new Label(TransistorCount), new Label(DieSize), new Label(technology), new Label(Displays));
-//    }
+
     public void setFullspec(String[] full) {
         fullspec = new VBox(10);
         for(int i =0; i< 15; i++) {
@@ -97,10 +108,10 @@ public class Item {
         }
     }
     public VBox getFullspec() {
-
-        boxbox.getChildren().add(fullspec);
-        boxbox.getStyleClass().add("compare-spec");
-        return boxbox;
+        VBox v = new VBox(fullspec);
+//        boxbox.getChildren().add(fullspec);
+        v.getStyleClass().add("compare-spec");
+        return v;
     }
     public GridPane getBasicInfo() {
 
@@ -139,17 +150,18 @@ public class Item {
         return  grid;
     }
     public HBox getCompare() {
-        hbox = new HBox(5);
-       VBox copy = new VBox(5, copyImg, copyName);
-       Button hide = new Button("[X]");
-       hide.setOnAction(event -> {
-           hbox.setVisible(false);
-           hbox.setManaged(false);
-       });
-       hbox.getChildren().addAll(copy, hide);
-        hbox.setPadding(new Insets(0,5,5,0));
-        hbox.getStyleClass().add("item-box");
-        return  hbox;
+        HBox h = new HBox(5);
+        VBox copy = new VBox(5, copyImg, copyName);
+        h.getChildren().add(copy);
+//        hbox.getChildren().addAll(copy, hide);
+        h.setPadding(new Insets(0,5,5,0));
+        h.getStyleClass().add("item-box");
+        return  h;
     }
-
+    public void changeAddState() {
+        added = !added;
+    }
+    public String getName() {
+        return name.getText();
+    }
 }

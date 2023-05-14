@@ -42,8 +42,19 @@ Top Pane CSS
     -fx-font-size: 30;
     -fx-font-weight: bold;
 }
+.brand-label:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
 .hyperlink {
-    -fx-text-fill: #666666;
+    -fx-text-fill: #ffffff;
     -fx-font-size: 20;
     -fx-visited: false;
     -fx-underline: false;
@@ -79,8 +90,15 @@ Center Panel
     -fx-max-width: -size;
     -fx-background-color: green;
     -fx-shape:"M11,16a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L12.59,12l-2.3-2.29a1,1,0,0,1,1.42-1.42l3,3a1,1,0,0,1,0,1.42l-3,3A1,1,0,0,1,11,16Z";
-
-
+}
+.clear {
+    -size: 24;
+        -fx-min-height: -size;
+        -fx-min-width: -size;
+        -fx-max-height: -size;
+        -fx-max-width: -size;
+        -fx-background-color: green;
+    -fx-shape:"M11.188 4.781c6.188 0 11.219 5.031 11.219 11.219s-5.031 11.188-11.219 11.188-11.188-5-11.188-11.188 5-11.219 11.188-11.219zM11.25 17.625l3.563 3.594c0.438 0.438 1.156 0.438 1.594 0 0.406-0.406 0.406-1.125 0-1.563l-3.563-3.594 3.563-3.594c0.406-0.438 0.406-1.156 0-1.563-0.438-0.438-1.156-0.438-1.594 0l-3.563 3.594-3.563-3.594c-0.438-0.438-1.156-0.438-1.594 0-0.406 0.406-0.406 1.125 0 1.563l3.563 3.594-3.563 3.594c-0.406 0.438-0.406 1.156 0 1.563 0.438 0.438 1.156 0.438 1.594 0z";
 }
 .compare-specname {
 -fx-font-size: 15;

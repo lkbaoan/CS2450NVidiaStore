@@ -39,7 +39,7 @@ public class TopPanel {
         gpuFilter = new Filter("GPU", new Node[] {
                 new FilterItem("RTX 4080", 22).getRoot(),
                 new FilterItem("RTX 4070", 20).getRoot(),
-                new FilterItem("RTX 4070 TI", 18).getRoot(),
+                new FilterItem("RTX 4070 Ti", 18).getRoot(),
                 new FilterItem("RTX 4090", 18).getRoot(),
                 new FilterItem("RTX 4060", 2).getRoot(),
                 new FilterItem("RTX 4050", 2).getRoot()
@@ -108,5 +108,9 @@ public class TopPanel {
         root.setPrefHeight(100);
 
         BorderPane.setAlignment(resetButton, Pos.BASELINE_CENTER);
+
+
+
+
     }
 }

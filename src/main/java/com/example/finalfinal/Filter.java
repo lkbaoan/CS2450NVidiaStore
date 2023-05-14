@@ -19,7 +19,7 @@ public class Filter {
     private boolean collapsed = false;
     private final Button button;
     private final Node[] filterItems;
-
+    private   int numchecked;
     public Node getRoot() {
         return root;
     }
@@ -49,6 +49,7 @@ public class Filter {
     }
 
     public Filter(String title, Node[] filterItems) {
+        numchecked = 0;
         button = new Button("-");
         this.filterItems = filterItems;
 
@@ -72,4 +73,5 @@ public class Filter {
 
         root.getChildren().addAll(filterItems);
     }
+
 }

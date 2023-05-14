@@ -3,6 +3,7 @@ package com.example.finalfinal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -17,20 +18,21 @@ import java.util.function.Predicate;
 
 public class View {
     public VBox allView;
-    public Item[] item;
+    public static Item[] item;
+    public static TilePane tile;
 
     public View() {
         allView = new VBox(5);
         TopPanel filter = new TopPanel();
-        TilePane tile = new TilePane();
+        tile = new TilePane();
 
         /**
          * Product and key feature
          */
         item = new Item[8];
-        item[0] = new Item("GV-N4080EAGLE-16GD.png", "Gigabyte GV-N4080EAGLE-16GD graphics card", 1149.99);
+        item[0] = new Item("GV-N4080EAGLE-16GD.png", "Gigabyte GeForce RTX 4080 Eagle OC 16G", 1149.99);
         item[1] = new Item("GV-N4090GAMING OC-24GD.png", "Gigabyte GeForce RTX 4090 GAMING OC 24G", 1699.99);
-        item[2] = new Item("TUF-RTX4090-O24G-GAMING.png", "ASUS TUF-RTX4090-O24G-GAMING", 1799.99);
+        item[2] = new Item("TUF-RTX4090-O24G-GAMING.png", "ASUS TUF Gaming GeForce RTX 4090 24GB", 1799.99);
         item[3] = new Item("GeForce-RTX4080-Back.png", "Nvidia GeForce RTX 4080", 1199.00);
         item[4] = new Item("VCG409024TFXXPB1.png", "PNY GeForce RTX 4090 Gaming VERTO", 1609.99);
         item[5] = new Item("SUPRIM-X.png", "MSI GeForce RTX 4090 SUPRIM X 24G", 1749.99);
@@ -84,6 +86,12 @@ public class View {
         Region centerBlank = new Region();
         VBox.setVgrow(centerBlank, Priority.ALWAYS);
         allView.getChildren().addAll(filter.getRoot(),centerBlank, tile);
+        allView.setPadding(new Insets(0,0,0,80));
+        tile.setMinSize(1300,500);
+        tile.setAlignment(Pos.TOP_LEFT);
+    }
+    public static Item[] getItem() {
+        return item;
     }
 
 }
